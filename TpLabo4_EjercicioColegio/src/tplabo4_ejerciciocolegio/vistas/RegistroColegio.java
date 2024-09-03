@@ -5,6 +5,8 @@
 package tplabo4_ejerciciocolegio.vistas;
 
 import java.util.HashSet;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import tplabo4_ejerciciocolegio.Alumno;
 import tplabo4_ejerciciocolegio.Materia;
 
@@ -15,11 +17,13 @@ import tplabo4_ejerciciocolegio.Materia;
 public class RegistroColegio extends javax.swing.JFrame {
     HashSet <Alumno> listaAlumnos = new HashSet<>();
     HashSet <Materia> listaMaterias = new HashSet<>();
+    
     /**
      * Creates new form RegistroColegio
      */
     public RegistroColegio() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -41,6 +45,7 @@ public class RegistroColegio extends javax.swing.JFrame {
         JMinscripcion = new javax.swing.JMenu();
         JMinscribirAlumnos = new javax.swing.JMenuItem();
         JMsalir = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,6 +113,15 @@ public class RegistroColegio extends javax.swing.JFrame {
                 JMsalirActionPerformed(evt);
             }
         });
+
+        jMenuItem1.setText("Seguro desea salir?");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        JMsalir.add(jMenuItem1);
+
         jMenuBar2.add(JMsalir);
 
         setJMenuBar(jMenuBar2);
@@ -148,16 +162,19 @@ public class RegistroColegio extends javax.swing.JFrame {
     private void JMinscribirAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMinscribirAlumnosActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        FormularioInscripcion f1 = new FormularioInscripcion();
+        FormularioInscripcion f1 = new FormularioInscripcion(listaMaterias, listaAlumnos);
         f1.setVisible(true);
         escritorio.add(f1);
     }//GEN-LAST:event_JMinscribirAlumnosActionPerformed
 
     private void JMsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMsalirActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        escritorio.add(this);
+    
+    
     }//GEN-LAST:event_JMsalirActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,5 +222,6 @@ public class RegistroColegio extends javax.swing.JFrame {
     private javax.swing.JPanel escritorio;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

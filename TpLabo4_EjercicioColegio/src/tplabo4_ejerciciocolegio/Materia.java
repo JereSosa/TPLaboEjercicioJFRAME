@@ -4,6 +4,8 @@
  */
 package tplabo4_ejerciciocolegio;
 
+import java.util.Objects;
+
 /**
  *
  * @author jeso_
@@ -42,5 +44,22 @@ public class Materia {
     public void setAnio(int anio) {
         this.anio = anio;
     }
+     public String toString() {
+        return nombre + " de " + anio + " año";
+    }
+
+    @Override
+    public int hashCode() {
+    return Objects.hash(idMateria);    
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Materia materia = (Materia) obj;
+        return idMateria == materia.idMateria; 
+    }
     
+     
 }

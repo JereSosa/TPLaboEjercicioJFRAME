@@ -5,6 +5,8 @@
 package tplabo4_ejerciciocolegio;
 
 import java.util.HashSet;
+import java.util.Objects;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,10 +49,31 @@ public class Alumno {
     }
     
     public void agregarMaterias(Materia m){
-        materias.add(m);
+        if (materias.add(m)) {
+            JOptionPane.showMessageDialog(null, "Alumno agregado correctamente");
+        } else 
+            JOptionPane.showMessageDialog(null, "El alumno ya se encuentra inscripto");
     }
     
     public int cantidadMaterias(){
         return materias.size();
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " " + apellido;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Alumno alumno = (Alumno) o;
+        return legajo == alumno.legajo;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(legajo);
     }
 }

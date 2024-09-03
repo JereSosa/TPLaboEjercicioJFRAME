@@ -4,7 +4,9 @@
  */
 package tplabo4_ejerciciocolegio.vistas;
 
+import java.awt.Color;
 import java.util.HashSet;
+import javax.swing.JOptionPane;
 import tplabo4_ejerciciocolegio.Alumno;
 
 /**
@@ -49,8 +51,13 @@ public class FormAltaAlumnos extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Legajo:");
 
-        JTlegajoAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JTlegajoAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         JTlegajoAlumno.setCaretColor(new java.awt.Color(153, 153, 0));
+        JTlegajoAlumno.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                JTlegajoAlumnoFocusLost(evt);
+            }
+        });
         JTlegajoAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTlegajoAlumnoActionPerformed(evt);
@@ -59,12 +66,12 @@ public class FormAltaAlumnos extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Nombre:");
 
-        JTnombreAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JTnombreAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         JTnombreAlumno.setCaretColor(new java.awt.Color(153, 153, 0));
 
         jLabel4.setText("Apellido:");
 
-        JTapellidoAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JTapellidoAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         JTapellidoAlumno.setCaretColor(new java.awt.Color(153, 153, 0));
 
         JBcargarAlumno.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
@@ -162,7 +169,7 @@ public class FormAltaAlumnos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JTlegajoAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTlegajoAlumnoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_JTlegajoAlumnoActionPerformed
 
     private void JBcargarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcargarAlumnoActionPerformed
@@ -172,6 +179,7 @@ public class FormAltaAlumnos extends javax.swing.JInternalFrame {
         String apellidoAlumno = JTapellidoAlumno.getText();
         Alumno alum1 = new Alumno(legajo, apellidoAlumno, nombreAlumno);
         alum.add(alum1);
+        JOptionPane.showMessageDialog(null, "Alumno cargado con exitó!");
         
     }//GEN-LAST:event_JBcargarAlumnoActionPerformed
 
@@ -184,6 +192,19 @@ public class FormAltaAlumnos extends javax.swing.JInternalFrame {
     private void JBsalirAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBsalirAlumnoActionPerformed
             dispose();  
     }//GEN-LAST:event_JBsalirAlumnoActionPerformed
+
+    private void JTlegajoAlumnoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTlegajoAlumnoFocusLost
+        String text = JTlegajoAlumno.getText();
+    try {
+        Integer.parseInt(text);
+        
+        JTlegajoAlumno.setBackground(Color.WHITE);
+    } catch (NumberFormatException e) {
+        JTlegajoAlumno.setBackground(Color.RED);
+        JOptionPane.showMessageDialog(this, 
+            "El legajo debe ser un número entero válido.","Error de entrada", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_JTlegajoAlumnoFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

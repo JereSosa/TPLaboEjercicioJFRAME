@@ -5,6 +5,7 @@
 package tplabo4_ejerciciocolegio.vistas;
 
 import java.util.HashSet;
+import javax.swing.JOptionPane;
 import tplabo4_ejerciciocolegio.Materia;
 
 /**
@@ -49,8 +50,13 @@ public class FormAltaMaterias extends javax.swing.JInternalFrame {
 
         jLabel2.setText("ID Materia:");
 
-        JTidMateria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JTidMateria.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         JTidMateria.setCaretColor(new java.awt.Color(153, 153, 0));
+        JTidMateria.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                JTidMateriaFocusLost(evt);
+            }
+        });
         JTidMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTidMateriaActionPerformed(evt);
@@ -59,25 +65,45 @@ public class FormAltaMaterias extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Nombre:");
 
-        JTnombreMateria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JTnombreMateria.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         JTnombreMateria.setCaretColor(new java.awt.Color(153, 153, 0));
 
         jLabel4.setText("Año:");
 
-        JTañoMateria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JTañoMateria.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         JTañoMateria.setCaretColor(new java.awt.Color(153, 153, 0));
+        JTañoMateria.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                JTañoMateriaFocusLost(evt);
+            }
+        });
 
         JBcargarMateria.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         JBcargarMateria.setText("Cargar");
         JBcargarMateria.setBorder(null);
+        JBcargarMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBcargarMateriaActionPerformed(evt);
+            }
+        });
 
         JBnuevoMateria.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         JBnuevoMateria.setText("Nuevo");
         JBnuevoMateria.setBorder(null);
+        JBnuevoMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBnuevoMateriaActionPerformed(evt);
+            }
+        });
 
         JBsalirMateria.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         JBsalirMateria.setText("Salir");
         JBsalirMateria.setBorder(null);
+        JBsalirMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBsalirMateriaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,8 +171,51 @@ public class FormAltaMaterias extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JTidMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTidMateriaActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_JTidMateriaActionPerformed
+
+    private void JBnuevoMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBnuevoMateriaActionPerformed
+        JTañoMateria.setText("");
+        JTidMateria.setText("");
+        JTnombreMateria.setText("");
+    }//GEN-LAST:event_JBnuevoMateriaActionPerformed
+
+    private void JBcargarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcargarMateriaActionPerformed
+        int añoMateria = Integer.parseInt(JTañoMateria.getText());
+        int idMateria = Integer.parseInt(JTidMateria.getText());
+        String nombreMateria = JTnombreMateria.getText();
+        Materia mat1 = new Materia(idMateria, nombreMateria, añoMateria);
+        mat.add(mat1);
+        JOptionPane.showMessageDialog(null, "La materia se cargo con exito!");
+        
+        
+    }//GEN-LAST:event_JBcargarMateriaActionPerformed
+
+    private void JBsalirMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBsalirMateriaActionPerformed
+        dispose();
+    }//GEN-LAST:event_JBsalirMateriaActionPerformed
+
+    private void JTidMateriaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTidMateriaFocusLost
+        try {
+            int idMateria = Integer.parseInt(JTidMateria.getText());
+            
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El ID de Materia solo puede contener numeros", "ERROR DE ENTRADA", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_JTidMateriaFocusLost
+
+    private void JTañoMateriaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTañoMateriaFocusLost
+        try {
+            
+            int añoMateria = Integer.parseInt(JTañoMateria.getText());
+        // Verificar si el año está en el rango permitido (por ejemplo, entre 1 y 7)
+        if (añoMateria < 1 || añoMateria > 7){
+                JOptionPane.showMessageDialog(this, "El rango de año no existe, porfavor corrijalo", "ERROR DE AÑO", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El año de Materia solo puede contener numeros", "ERROR DE ENTRADA", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_JTañoMateriaFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

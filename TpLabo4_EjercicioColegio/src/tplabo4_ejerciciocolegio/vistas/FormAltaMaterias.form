@@ -124,6 +124,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="JTidMateriaFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTidMateriaActionPerformed"/>
           </Events>
         </Component>
@@ -160,6 +161,9 @@
               <Color blue="0" green="99" red="99" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="JTa&#xf1;oMateriaFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="JBcargarMateria">
           <Properties>
@@ -171,6 +175,9 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBcargarMateriaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="JBnuevoMateria">
           <Properties>
@@ -182,6 +189,9 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBnuevoMateriaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="JBsalirMateria">
           <Properties>
@@ -193,6 +203,9 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBsalirMateriaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
