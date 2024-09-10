@@ -44,14 +44,14 @@ public class FormAltaAlumnos extends javax.swing.JInternalFrame {
         JBnuevoAlumno = new javax.swing.JButton();
         JBsalirAlumno = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(242, 189, 57));
+        jPanel1.setBackground(new java.awt.Color(242, 37, 40));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setText("Formulario de Alumnos");
 
         jLabel2.setText("Legajo:");
 
-        JTlegajoAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        JTlegajoAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JTlegajoAlumno.setCaretColor(new java.awt.Color(153, 153, 0));
         JTlegajoAlumno.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -66,12 +66,12 @@ public class FormAltaAlumnos extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Nombre:");
 
-        JTnombreAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        JTnombreAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JTnombreAlumno.setCaretColor(new java.awt.Color(153, 153, 0));
 
         jLabel4.setText("Apellido:");
 
-        JTapellidoAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        JTapellidoAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JTapellidoAlumno.setCaretColor(new java.awt.Color(153, 153, 0));
 
         JBcargarAlumno.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N

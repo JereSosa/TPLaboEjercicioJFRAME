@@ -4,8 +4,11 @@
  */
 package tplabo5_ejercicioagenda;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  *
@@ -26,7 +29,27 @@ public class Directorio {
         return contactos.get(telefono);
     }
     
-    public Set<Long> buscarTelefono(String apellido){
-        
+    public Set<Long> buscarTelefono(String apellido) {
+        Set<Long> telefonos = new TreeSet<>();
+        for (Map.Entry<Long, Contactos> entry : contactos.entrySet()) {
+            if (entry.getValue().getApellido().equals(apellido)) {
+                telefonos.add(entry.getKey());
+            }
+        }
+        return telefonos;
+    }
+
+    public ArrayList<Contactos> buscarContactos(String ciudad) {
+        ArrayList<Contactos> listaContactos = new ArrayList<>();
+        for (Contactos contacto : contactos.values()) {
+            if (contacto.getCiudad().equals(ciudad)) {
+                listaContactos.add(contacto);
+            }
+        }
+        return listaContactos;
+    }
+
+    public boolean borrarContacto(Long telefono) {
+        return contactos.remove(telefono) != null;
     }
 }
