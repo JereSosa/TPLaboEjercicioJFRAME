@@ -4,6 +4,7 @@
  */
 package tplabo5_ejercicioagenda.Vistas;
 
+import java.awt.Dimension;
 import java.util.Map;
 import java.util.TreeMap;
 import javax.swing.JOptionPane;
@@ -17,12 +18,17 @@ import tplabo5_ejercicioagenda.Directorio;
  */
 public class BuscarTelefono extends javax.swing.JInternalFrame {
     private TreeMap<Long, Contactos> Agenda;
+    
     /**
      * Creates new form BuscarTelefono
      */
-    public BuscarTelefono() {
+    public BuscarTelefono(TreeMap<Long, Contactos> agenda) {
         initComponents();
-        
+        this.Agenda = agenda;       
+        setMinimumSize(new Dimension(800, 600));
+        pack();
+        jTable1.setPreferredScrollableViewportSize(new Dimension(800, 400)); // Ajustar tamaño preferido de la tabla
+        jTable1.setFillsViewportHeight(true);
         
     }
 
@@ -47,6 +53,7 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
         JTfiltroTelefono = new javax.swing.JTextField();
         JTfiltroApellido = new javax.swing.JTextField();
         JTfiltroCiudad = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -64,6 +71,8 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
                 "Nombre", "Apellido", "Dni", "Ciudad", "Direccion", "Telefono"
             }
         ));
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
+        jTable1.setMaximumSize(new Dimension(800, 600));
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setHeaderValue("Nombre");
@@ -84,6 +93,11 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
         jButton4.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Seleccionar contacto");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 221, 26));
@@ -120,6 +134,16 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(0, 0, 0));
+        jButton5.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 12)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Volver");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -132,30 +156,32 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
                     .addComponent(JTfiltroTelefono, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(179, 179, 179))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(JTfiltroApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JTfiltroCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(46, 46, 46))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67))))
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(JTfiltroApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JTfiltroCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -173,20 +199,20 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void JTfiltroApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTfiltroApellidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTfiltroApellidoActionPerformed
@@ -202,6 +228,36 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
     private void JTfiltroCiudadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTfiltroCiudadKeyReleased
         actualizarTabla();
     }//GEN-LAST:event_JTfiltroCiudadKeyReleased
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        int filaSeleccionada = jTable1.getSelectedRow();
+    
+    if (filaSeleccionada == -1) {
+        JOptionPane.showMessageDialog(null, "Debe seleccionar un contacto.");
+        return;
+    }
+
+    // Obtener los valores de la fila seleccionada
+    String nombre = (String) jTable1.getValueAt(filaSeleccionada, 0);
+    String apellido = (String) jTable1.getValueAt(filaSeleccionada, 1);
+    Long dni = (Long) jTable1.getValueAt(filaSeleccionada, 2);
+    String ciudad = (String) jTable1.getValueAt(filaSeleccionada, 3);
+    String direccion = (String) jTable1.getValueAt(filaSeleccionada, 4);
+    Long telefono = (Long) jTable1.getValueAt(filaSeleccionada, 5);
+
+    // Asignar los valores a los JTextField de la vista principal
+    AgendaTelefonicaVista vistaPrincipal = new AgendaTelefonicaVista();
+    vistaPrincipal.setVisible(true); // Aseguramos que la vista principal sea visible
+    vistaPrincipal.cargarContactoEnFormulario(nombre, apellido, dni, ciudad, direccion, telefono); 
+
+    this.dispose(); // Cierra la ventana de búsqueda
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        this.dispose();
+        AgendaTelefonicaVista vistaPrincipal = new AgendaTelefonicaVista();
+        vistaPrincipal.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     public void llenarTabla(TreeMap<Long, Contactos> agenda) {
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -223,49 +279,53 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
 }
 
     private void actualizarTabla(){
-        if (Agenda == null || jTable1 == null || jTable1.getModel() == null) {
-        // Manejar el caso en el que Agenda o jTable1 son null
-        return;
-    }
+        if (Agenda == null){
+            System.out.println("Agenda es null, no se puede actualizar la tabla.");
+            return;
+        }
+ DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0); // Limpiar la tabla antes de llenarla
 
+    // Obtener el texto del filtro
     String telefonoFiltro = JTfiltroTelefono.getText().trim();
     String apellidoFiltro = JTfiltroApellido.getText().trim();
     String ciudadFiltro = JTfiltroCiudad.getText().trim();
 
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); // Limpiar la tabla antes de llenarla
-
+    // Recorrer los contactos en la agenda
     for (Map.Entry<Long, Contactos> entry : Agenda.entrySet()) {
+        Long telefono = entry.getKey();
         Contactos contacto = entry.getValue();
-        String telefono = entry.getKey().toString();
-        String apellido = contacto.getApellido();
-        String ciudad = contacto.getCiudad();
 
-        // Verificar si cada campo de filtro está vacío
-        boolean encontroTel = telefonoFiltro.isEmpty() || telefono.contains(telefonoFiltro);
-        boolean encontroApellido = apellidoFiltro.isEmpty() || apellido.contains(apellidoFiltro);
-        boolean encontroCiudad = ciudadFiltro.isEmpty() || ciudad.contains(ciudadFiltro);
+        // Convertir a minúsculas para hacer la comparación insensible a mayúsculas
+        String telefonoStr = telefono.toString();
+        String apellido = contacto.getApellido().toLowerCase();
+        String ciudad = contacto.getCiudad().toLowerCase();
 
-        // Agregar la fila si cumple con todos los filtros
-        if (encontroTel && encontroApellido && encontroCiudad) {
+        // Condiciones para los filtros
+        boolean cumpleFiltroTelefono = telefonoFiltro.isEmpty() || telefonoStr.startsWith(telefonoFiltro);
+        boolean cumpleFiltroApellido = apellidoFiltro.isEmpty() || apellido.contains(apellidoFiltro.toLowerCase());
+        boolean cumpleFiltroCiudad = ciudadFiltro.isEmpty() || ciudad.contains(ciudadFiltro.toLowerCase());
+
+        // Si cumple con todos los filtros, agregarlo a la tabla
+        if (cumpleFiltroTelefono && cumpleFiltroApellido && cumpleFiltroCiudad) {
             model.addRow(new Object[]{
                 contacto.getNombre(),
                 contacto.getApellido(),
                 contacto.getDni(),
                 contacto.getCiudad(),
                 contacto.getDireccion(),
-                entry.getKey()
+                telefono // El número de teléfono
             });
         }
     }
-    }
-  
+  }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JTfiltroApellido;
     private javax.swing.JTextField JTfiltroCiudad;
     private javax.swing.JTextField JTfiltroTelefono;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

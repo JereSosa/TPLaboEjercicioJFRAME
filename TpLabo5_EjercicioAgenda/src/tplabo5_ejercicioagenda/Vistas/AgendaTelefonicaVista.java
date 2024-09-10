@@ -31,6 +31,8 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
     public AgendaTelefonicaVista() {
         initComponents();
         Agenda = new TreeMap<>();
+        setVisible(true);
+        setLocationRelativeTo(null);
         Contactos a1 = new Contactos(39797677,"Jeremias", "Sosa", "Villa mercedes" , "Juan llerena 1024");
         Contactos a2 = new Contactos(40037038,"Valentina", "Reyes", "San Luis" , "La punta");
         Contactos a3 = new Contactos(45784555,"Sabrina", "Condori", "Rosario" , "Orellano 231");
@@ -320,6 +322,16 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+  
+    public void cargarContactoEnFormulario(String nombre, String apellido, Long dni, String ciudad, String direccion, Long telefono) {
+    JTnombre.setText(nombre);
+    JTapellido.setText(apellido);
+    JTdni.setText(String.valueOf(dni));
+    JTciudad.setText(ciudad);
+    JTdireccion.setText(direccion);
+    JTtelefono.setText(String.valueOf(telefono));
+}
+    
     private void JTtelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTtelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTtelefonoActionPerformed
@@ -405,11 +417,11 @@ public class AgendaTelefonicaVista extends javax.swing.JFrame {
     private void JBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        BuscarTelefono a2 = new BuscarTelefono();
+        BuscarTelefono a2 = new BuscarTelefono(AgendaTelefonicaVista.getAgenda());
         a2.setVisible(true);
+        
         escritorio.add(a2);
-        a2.llenarTabla(Agenda);
-        escritorio.add(a2);
+        a2.llenarTabla(AgendaTelefonicaVista.getAgenda());
     }//GEN-LAST:event_JBbuscarActionPerformed
 
     /**
