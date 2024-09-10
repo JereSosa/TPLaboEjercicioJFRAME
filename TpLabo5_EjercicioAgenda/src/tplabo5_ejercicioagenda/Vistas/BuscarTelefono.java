@@ -24,11 +24,18 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
      */
     public BuscarTelefono(TreeMap<Long, Contactos> agenda) {
         initComponents();
-        this.Agenda = agenda;       
-        setMinimumSize(new Dimension(800, 600));
-        pack();
-        jTable1.setPreferredScrollableViewportSize(new Dimension(800, 400)); // Ajustar tamaño preferido de la tabla
+        this.Agenda = agenda;
+
+        
+        setBounds(100, 100, 1000, 600);  
+        setClosable(true);
+        setResizable(true);
+
+        
+        jTable1.setPreferredScrollableViewportSize(new Dimension(950, 500));
         jTable1.setFillsViewportHeight(true);
+
+       
         
     }
 
@@ -72,7 +79,7 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
             }
         ));
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
-        jTable1.setMaximumSize(new Dimension(800, 600));
+        jTable1.setMaximumSize(new Dimension(1000, 700));
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setHeaderValue("Nombre");
@@ -156,7 +163,7 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
                     .addComponent(JTfiltroTelefono, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(75, 75, 75)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,7 +244,7 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
         return;
     }
 
-    // Obtener los valores de la fila seleccionada
+    
     String nombre = (String) jTable1.getValueAt(filaSeleccionada, 0);
     String apellido = (String) jTable1.getValueAt(filaSeleccionada, 1);
     Long dni = (Long) jTable1.getValueAt(filaSeleccionada, 2);
@@ -245,12 +252,12 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
     String direccion = (String) jTable1.getValueAt(filaSeleccionada, 4);
     Long telefono = (Long) jTable1.getValueAt(filaSeleccionada, 5);
 
-    // Asignar los valores a los JTextField de la vista principal
+    
     AgendaTelefonicaVista vistaPrincipal = new AgendaTelefonicaVista();
-    vistaPrincipal.setVisible(true); // Aseguramos que la vista principal sea visible
+    vistaPrincipal.setVisible(true); 
     vistaPrincipal.cargarContactoEnFormulario(nombre, apellido, dni, ciudad, direccion, telefono); 
 
-    this.dispose(); // Cierra la ventana de búsqueda
+    this.dispose(); 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -261,7 +268,7 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
 
     public void llenarTabla(TreeMap<Long, Contactos> agenda) {
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); // Limpiar la tabla antes de llenarla
+    model.setRowCount(0); 
 
     for (Map.Entry<Long, Contactos> entry : agenda.entrySet()) {
         Long telefono = entry.getKey();
@@ -274,7 +281,7 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
             contacto.getDireccion(),
             telefono
         };
-        model.addRow(fila); // Agregar cada fila al modelo
+        model.addRow(fila); 
     }
 }
 
@@ -284,29 +291,29 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
             return;
         }
  DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); // Limpiar la tabla antes de llenarla
+    model.setRowCount(0); 
 
-    // Obtener el texto del filtro
+   
     String telefonoFiltro = JTfiltroTelefono.getText().trim();
     String apellidoFiltro = JTfiltroApellido.getText().trim();
     String ciudadFiltro = JTfiltroCiudad.getText().trim();
 
-    // Recorrer los contactos en la agenda
+    
     for (Map.Entry<Long, Contactos> entry : Agenda.entrySet()) {
         Long telefono = entry.getKey();
         Contactos contacto = entry.getValue();
 
-        // Convertir a minúsculas para hacer la comparación insensible a mayúsculas
+        
         String telefonoStr = telefono.toString();
         String apellido = contacto.getApellido().toLowerCase();
         String ciudad = contacto.getCiudad().toLowerCase();
 
-        // Condiciones para los filtros
+        
         boolean cumpleFiltroTelefono = telefonoFiltro.isEmpty() || telefonoStr.startsWith(telefonoFiltro);
         boolean cumpleFiltroApellido = apellidoFiltro.isEmpty() || apellido.contains(apellidoFiltro.toLowerCase());
         boolean cumpleFiltroCiudad = ciudadFiltro.isEmpty() || ciudad.contains(ciudadFiltro.toLowerCase());
 
-        // Si cumple con todos los filtros, agregarlo a la tabla
+        
         if (cumpleFiltroTelefono && cumpleFiltroApellido && cumpleFiltroCiudad) {
             model.addRow(new Object[]{
                 contacto.getNombre(),
@@ -314,7 +321,7 @@ public class BuscarTelefono extends javax.swing.JInternalFrame {
                 contacto.getDni(),
                 contacto.getCiudad(),
                 contacto.getDireccion(),
-                telefono // El número de teléfono
+                telefono 
             });
         }
     }
